@@ -1,8 +1,36 @@
-@forward "vendor/tailwind.css";
-@forward "vendor/daisyui.css";
+@use "tailwindcss";
 
-.container-center {
-	@apply container mx-auto px-4;
+@plugin "daisyui" {
+  themes: light --default;
+  font-family: Montserrat, sans-serif;
+};
+
+@theme {
+  /* Brand Colors */
+  --color-brand-primary: #0C1524;
+  --color-brand-primary-hover: #121A33;
+
+  --color-brand-secondary: #FFAE00;
+  --color-brand-secondary-hover: #E69500;
+
+  /* Backgrounds */
+  --color-brand-background: #F7F7F7;
+  --color-brand-surface: #F6F8FC;
+
+  /* Sidebar */
+  --color-sidebar: #071228;
+  --color-sidebar-card: #10203F;
+  --color-sidebar-hover: #16294D;
+
+  /* Text */
+  --color-text-primary: #0C1524;
+  --color-text-secondary: #8B8B8B;
+
+  /* Borders */
+  --color-border-primary: #D5DBE4;
+
+  /* States */
+  --color-success: #22C55E;
+  --color-warning: #FBBD23;
+  --color-error: #F87272;
 }
-
-

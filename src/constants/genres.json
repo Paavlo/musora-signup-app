@@ -1,0 +1,16 @@
+[
+  { "key": "classical", "title": "Classical" },
+  { "key": "rock", "title": "Rock" },
+  { "key": "pop", "title": "Pop" },
+
+  { "key": "jazz", "title": "Jazz" },
+  { "key": "blues", "title": "Blues" },
+  { "key": "country", "title": "Country" },
+
+  { "key": "metal", "title": "Metal" },
+  { "key": "funk", "title": "Funk" },
+  { "key": "soul", "title": "Soul" },
+
+  { "key": "christian", "title": "Christian" },
+  { "key": "hiphop_rap", "title": "Hip-Hop/Rap" }
+]

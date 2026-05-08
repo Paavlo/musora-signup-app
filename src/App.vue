@@ -1,17 +1,9 @@
 <script setup>
-import { RouterView } from "vue-router";
-import TheFooter from "@/components/TheFooter.vue";
-import TheHeader from "@/components/TheHeader.vue";
+import OnboardingView from "@/views/onboarding-view.vue";
 </script>
 
 <template>
-	<TheHeader/>
-
-	<main class="py-8">
-		<router-view />
-	</main>
-
-	<TheFooter/>
+  <onboarding-view />
 </template>
 
 <style scoped lang="scss">
