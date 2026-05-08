@@ -1,10 +1,10 @@
-import { computed, defineAsyncComponent, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useOnboardingValidation } from "@/composables/use-onboarding-validation.js";
 
-const GenreStep = defineAsyncComponent(() => import('@/components/steps/genre-step.vue'));
-const InstrumentPage = defineAsyncComponent(() => import('@/components/steps/instrument-step.vue'));
-const EmailStep = defineAsyncComponent(() => import('@/components/steps/email-step.vue'));
-const WelcomeStep = defineAsyncComponent(() => import('@/components/steps/welcome-step.vue'));
+import GenreStep from '@/components/steps/genre-step.vue';
+import InstrumentPage from '@/components/steps/instrument-step.vue';
+import EmailStep from '@/components/steps/email-step.vue';
+import WelcomeStep from '@/components/steps/welcome-step.vue';
 
 const onboardingState = reactive({
   currentStep: 0,

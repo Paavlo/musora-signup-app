@@ -6,13 +6,19 @@
       </transition>
 
       <div class="flex flex-col my-auto w-[605px] mx-auto self-center">
-        <div class="mb-8 flex justify-center">
+        <div class="flex justify-center">
           <div class="text-brand-secondary text-5xl font-black">
             <img src="@/assets/icons/musora-icon.svg" alt="Musora Logo" class="h-12" />
           </div>
         </div>
 
-        <progress class="progress text-brand-secondary bg-border-primary mx-auto transition-all duration-200" :value="percentComplete" max="100"></progress>
+        <transition name="step-forward" mode="in-out">
+          <progress-bar
+              v-if="!isLastStep"
+              class="progress text-brand-secondary bg-border-primary mx-auto mt-8 h-[10px]"
+              :value="percentComplete" max="100"
+          />
+        </transition>
 
         <div class="mt-12 mb-8">
           <transition name="step-forward" mode="out-in">
@@ -50,6 +56,7 @@
 import { useOnboarding } from "@/composables/use-onboarding.js";
 import { computed, ref } from "vue";
 import Sidebar from "@/components/sidebar.vue";
+import ProgressBar from "@/components/progress-bar.vue";
 
 
 const { onboardingState, stepTitles, isLastStep, isCurrentStepValid, nextStep } = useOnboarding();

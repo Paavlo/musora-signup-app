@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full min-w-[145px]">
     <div class="text-center">
       <h1
         class="text-brand-primary mb-3 font-black uppercase"
