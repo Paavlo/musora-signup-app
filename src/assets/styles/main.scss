@@ -2,7 +2,6 @@
 
 @plugin "daisyui" {
   themes: light --default;
-  font-family: Montserrat, sans-serif;
 };
 
 @theme {
@@ -23,14 +22,17 @@
   --color-sidebar-hover: #16294D;
 
   /* Text */
-  --color-text-primary: #0C1524;
-  --color-text-secondary: #8B8B8B;
+  --text-accent: #FFFFFF;
+  --text-accent-100: #3D4450;
+  --color-text-secondary: #C6CCD6;
 
   /* Borders */
   --color-border-primary: #D5DBE4;
+  --color-border-secondary: #262B30;
+  --color-border-red-primary: #ff3d5a;
 
   /* States */
-  --color-success: #22C55E;
-  --color-warning: #FBBD23;
+  --color-success: #41D8BF;
+  --color-warning: #FFAE00;
   --color-error: #F87272;
 }

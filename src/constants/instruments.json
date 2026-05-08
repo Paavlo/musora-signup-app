@@ -1,0 +1,22 @@
+[
+  {
+    "id": "drums",
+    "label": "Drums"
+  },
+  {
+    "id": "piano",
+    "label": "Piano"
+  },
+  {
+    "id": "guitar",
+    "label": "Guitar"
+  },
+  {
+    "id": "bass",
+    "label": "Bass"
+  },
+  {
+    "id": "voice",
+    "label": "Voice"
+  }
+]

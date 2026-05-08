@@ -1,9 +1,11 @@
 <template>
   <main class="onboarding-view flex flex-row w-full">
     <div class="onboarding-view__container flex flex-row w-full">
-      <sidebar />
+      <transition name="step-forward" mode="in-out">
+        <sidebar v-if="onboardingState.currentStep < 2" />
+      </transition>
 
-      <div class="flex flex-col my-auto max-w-[605px] mx-auto self-center">
+      <div class="flex flex-col my-auto w-[605px] mx-auto self-center">
         <div class="mb-8 flex justify-center">
           <div class="text-brand-secondary text-5xl font-black">
             <img src="@/assets/icons/musora-icon.svg" alt="Musora Logo" class="h-12" />
@@ -14,31 +16,45 @@
 
         <div class="mt-12 mb-8">
           <transition name="step-forward" mode="out-in">
-            <component :is="stepTitles[onboardingState.currentStep].component" />
+            <component ref="currentStepComponent" :is="stepTitles[onboardingState.currentStep].component" />
           </transition>
         </div>
 
-        <div class="flex justify-center">
+        <div v-if="!isLastStep" class="flex justify-center">
           <button
               class="btn border-0 bg-brand-primary hover:bg-brand-primary-hover h-[40px] w-full max-w-[400px] rounded-full text-base font-bold uppercase tracking-widest text-white shadow-none"
-              :disabled="!onboardingState.instrument"
-              @click="onboardingState.currentStep++"
+              :disabled="!isCurrentStepValid"
+              @click="nextStep"
           >
-            Next
+            {{ buttonText }}
           </button>
         </div>
+
+        <template v-if="onboardingState.currentStep === 2">
+          <label class="flex flex-row items-center justify-center text-xs mt-12">
+            <input v-model="onboardingState.agreedToMarketing" type="checkbox" class="checkbox me-2" />
+
+            Send me tips, free lessons, and special offers by email.
+          </label>
+
+          <h6 class="absolute bottom-12 translate-[-50%] left-[50%] text-center mt-auto">
+            By continuing you agree with Musora’s <span class="onboarding-view__term-of-use">Terms of Use</span> and <span class="onboarding-view__term-of-use">Privacy Policy</span>
+          </h6>
+        </template>
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
-import {useOnboarding} from "@/composables/use-onboarding.js";
-import {computed} from "vue";
+import { useOnboarding } from "@/composables/use-onboarding.js";
+import { computed, ref } from "vue";
 import Sidebar from "@/components/sidebar.vue";
 
 
-const { onboardingState, stepTitles } = useOnboarding();
+const { onboardingState, stepTitles, isLastStep, isCurrentStepValid, nextStep } = useOnboarding();
+
+const currentStepComponent = ref();
 
 const percentComplete = computed(() => {
   const totalSteps = 3;
@@ -46,9 +62,18 @@ const percentComplete = computed(() => {
   return (currentStep / totalSteps) * 100;
 });
 
+const buttonText = computed(() => {
+  if (onboardingState.currentStep > 1) {
+    return 'Let’s Go!';
+  }
+  return 'Next';
+});
+
 </script>
 
 <style lang="scss">
+@use '@/assets/styles/step-animation';
+
 .onboarding-view {
   height: 100vh;
 
@@ -56,49 +81,8 @@ const percentComplete = computed(() => {
     max-width: 400px;
   }
 
-  // ─── Shared timing ───────────────────────────────────────────
-  $step-duration: 380ms;
-  $step-easing:   cubic-bezier(0.4, 0, 0.2, 1);
-  $step-distance: 40px;
-
-  // ─── Forward (next step) ─────────────────────────────────────
-  .step-forward {
-    &-enter-active,
-    &-leave-active {
-      transition:
-          opacity   $step-duration $step-easing,
-          transform $step-duration $step-easing;
-    }
-
-    &-enter-from {
-      opacity: 0;
-      transform: translateX($step-distance);
-    }
-
-    &-leave-to {
-      opacity: 0;
-      transform: translateX(-$step-distance);
-    }
-  }
-
-  // ─── Back (previous step) ────────────────────────────────────
-  .step-back {
-    &-enter-active,
-    &-leave-active {
-      transition:
-          opacity   $step-duration $step-easing,
-          transform $step-duration $step-easing;
-    }
-
-    &-enter-from {
-      opacity: 0;
-      transform: translateX(-$step-distance);
-    }
-
-    &-leave-to {
-      opacity: 0;
-      transform: translateX($step-distance);
-    }
+  &__term-of-use {
+    color: var(--color-warning);
   }
 }
 </style>
