@@ -35,13 +35,11 @@
 
 <script setup>
 import { useOnboarding } from "@/composables/use-onboarding.js";
-import { getImageUrl } from "@/utils/get-image-url.js";
 import GeneralComponent from "@/components/general-component.vue";
 import instruments from "@/constants/instruments.json";
 
 const { onboardingState } = useOnboarding();
 
 const getInstrumentIcon = (instrumentId) => {
-  return getImageUrl('/src/assets/icons/', instrumentId, 'svg');
-}
+  return new URL(`/src/assets/icons/${instrumentId}.svg`, import.meta.url).href }
 </script>

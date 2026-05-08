@@ -13,26 +13,26 @@
 <script setup>
 import Slider from "@/components/slider.vue";
 import { useOnboarding } from "@/composables/use-onboarding.js";
-import { getImageUrl } from "@/utils/get-image-url.js";
 
 const { onboardingState } = useOnboarding();
 
 const cards=[
   {
     id: 'piano',
-    image: getImageUrl('/src/assets/images/', 'piano', 'jpg'),
+    image: new URL(`/src/assets/images/piano.jpg`, import.meta.url).href,
     title: 'Piano',
     subtitle: '3 Learning Paths, 62 Artist\nCourses, 950+ Songs',
   },
   {
     id: 'guitar',
-    image: getImageUrl('/src/assets/images/', 'guitar', 'jpg'),
+
+    image: new URL(`/src/assets/images/guitar.jpg`, import.meta.url).href,
     title: 'Guitar',
     subtitle: '3 Learning Paths, 87 Artist Courses, 1500+ Songs',
   },
   {
     id: 'drums',
-    image: getImageUrl('/src/assets/images/', 'drumeo', 'jpg'),
+    image: new URL(`/src/assets/images/drum.jpg`, import.meta.url).href,
     title: 'Drums',
     subtitle: '3 Learning Paths, 340 Artist Courses, 2500+ Songs',
   },
