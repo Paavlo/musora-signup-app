@@ -33,8 +33,8 @@
   </general-component>
 </template>
 
-<script setup>
-import { useOnboarding } from "@/composables/use-onboarding.js";
+<script setup lang="ts">
+import { useOnboarding } from "@/composables/use-onboarding.ts";
 import GeneralComponent from "@/components/general-component.vue";
 import instruments from "@/constants/instruments.json";
 

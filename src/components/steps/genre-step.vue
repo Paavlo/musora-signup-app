@@ -30,9 +30,9 @@
   </general-component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import genresList from "@/constants/genres.json";
-import {useOnboarding} from "@/composables/use-onboarding.js";
+import {useOnboarding} from "@/composables/use-onboarding.ts";
 import {onMounted} from "vue";
 import GeneralComponent from "@/components/general-component.vue";
 

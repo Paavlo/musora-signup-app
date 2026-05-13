@@ -21,7 +21,7 @@
 
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   title: { type: String, required: true },
   subtitle: { type: String, required: true },
@@ -29,7 +29,3 @@ defineProps({
   subtitleClass: { type: String, required: false, default: 'text-base' },
 })
 </script>
-
-<style scoped lang="scss">
-
-</style>

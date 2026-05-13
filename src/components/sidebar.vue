@@ -10,9 +10,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Slider from "@/components/slider.vue";
-import { useOnboarding } from "@/composables/use-onboarding.js";
+import { useOnboarding } from "@/composables/use-onboarding.ts";
 
 const { onboardingState } = useOnboarding();
 

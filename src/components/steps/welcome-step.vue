@@ -19,30 +19,30 @@
   </general-component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import GeneralComponent from "@/components/general-component.vue";
 import ListItem from "@/components/list-item.vue";
-import { useOnboarding } from "@/composables/use-onboarding.js";
+import { useOnboarding } from "@/composables/use-onboarding.ts";
 import genres from "@/constants/genres.json";
 import instruments from "@/constants/instruments.json";
 import { computed } from "vue";
 
 const { onboardingState } = useOnboarding();
 
-const selectedGenres = computed(() => {
+const selectedGenres = computed((): string => {
   return genres
     .filter(genreItem => onboardingState.genres.findIndex((genre) => genre === genreItem.key))
     .map(genre => genre.title)
     .join(', ')
 });
 
-const selectedInstrument = computed(() => {
+const selectedInstrument = computed((): string => {
   const instrument = instruments.find(instrument => instrument.id === onboardingState.instrument);
   return instrument ? instrument.label : '';
 })
 
 
-const listItems = [
+const listItems: Array<Record<string, string>> = [
   { title: 'Instrument', value: selectedInstrument },
   { title: 'Genres', value: selectedGenres.value },
   { title: 'Email', value: onboardingState.email },

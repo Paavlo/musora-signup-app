@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { useOnboarding } from "@/composables/use-onboarding.js";
+import { useOnboarding } from "@/composables/use-onboarding.ts";
 import { computed, ref } from "vue";
 import Sidebar from "@/components/sidebar.vue";
 import ProgressBar from "@/components/progress-bar.vue";

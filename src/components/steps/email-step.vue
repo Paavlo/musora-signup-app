@@ -31,11 +31,11 @@
   </general-component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue'
 import GeneralComponent from "@/components/general-component.vue";
-import { useOnboarding } from "@/composables/use-onboarding.js";
-import {useOnboardingValidation} from "@/composables/use-onboarding-validation.js";
+import { useOnboarding } from "@/composables/use-onboarding.ts";
+import {useOnboardingValidation} from "@/composables/use-onboarding-validation.ts";
 
 const { onboardingState } = useOnboarding();
 const {

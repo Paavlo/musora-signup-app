@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue'
-import { useOnboarding } from '@/composables/use-onboarding.js'
+import { useOnboarding } from '@/composables/use-onboarding'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -10,7 +10,7 @@ export function useOnboardingValidation() {
   const { onboardingState } = useOnboarding()
 
   const isEmailValid = computed(() => {
-    return EMAIL_REGEX.test(onboardingState.email)
+    return EMAIL_REGEX.test(onboardingState.email || '')
   })
 
   const validateEmail = () => {
