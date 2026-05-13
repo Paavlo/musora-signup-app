@@ -2,16 +2,20 @@
   <div class="slider-wrapper">
     <div class="slider-track">
       <div
-          v-for="(card, i) in cards"
-          :key="card.id"
-          class="card-slot"
-          :class="getSlotClass(i)"
-          @click="goTo(i)"
+        v-for="(card, i) in cards"
+        :key="card.id"
+        class="card-slot"
+        :class="getSlotClass(i)"
+        @click="goTo(i)"
       >
         <div class="card">
           <div class="card-border" />
 
-          <img :src="card.image" :alt="card.title" class="card-image" />
+          <img
+            :src="card.image"
+            :alt="card.title"
+            class="card-image"
+          >
 
           <div class="card-logo">
             <slot name="logo">
@@ -20,27 +24,34 @@
           </div>
 
           <div class="card-content">
-            <h2 class="card-title justify-center">{{ card.title }}</h2>
-            <p class="card-subtitle text-center">{{ card.subtitle }}</p>
+            <h2 class="card-title justify-center">
+              {{ card.title }}
+            </h2>
+            <p class="card-subtitle text-center">
+              {{ card.subtitle }}
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <div v-if="showDots" class="dots">
+    <div
+      v-if="showDots"
+      class="dots"
+    >
       <button
-          v-for="(_, i) in cards"
-          :key="i"
-          class="dot"
-          :class="{ active: i === current }"
-          @click="goTo(i)"
+        v-for="(_, i) in cards"
+        :key="i"
+        class="dot"
+        :class="{ active: i === current }"
+        @click="goTo(i)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 interface SliderCard {
   id: string | number
@@ -58,43 +69,43 @@ const props = withDefaults(defineProps<{
   interval: 5000,
   pauseOnHover: true,
   showDots: true,
-})
+});
 
-const current = ref(0)
-let timer: ReturnType<typeof setInterval> | null = null
+const current = ref(0);
+let timer: ReturnType<typeof setInterval> | null = null;
 
 function next() {
-  current.value = (current.value + 1) % props.cards.length
+  current.value = (current.value + 1) % props.cards.length;
 }
 
 function goTo(i: number) {
-  current.value = i
-  resetTimer()
+  current.value = i;
+  resetTimer();
 }
 
 function startTimer() {
-  timer = setInterval(next, props.interval)
+  timer = setInterval(next, props.interval);
 }
 
 function resetTimer() {
-  if (timer) clearInterval(timer)
-  startTimer()
+  if (timer) clearInterval(timer);
+  startTimer();
 }
 
 // Returns 'prev' | 'active' | 'next' | 'hidden'
 function getSlotClass(i: number): string {
-  const len = props.cards.length
-  const prev = (current.value - 1 + len) % len
-  const next = (current.value + 1) % len
+  const len = props.cards.length;
+  const prev = (current.value - 1 + len) % len;
+  const next = (current.value + 1) % len;
 
-  if (i === current.value) return 'is-active'
-  if (i === prev)          return 'is-prev'
-  if (i === next)          return 'is-next'
-  return 'is-hidden'
+  if (i === current.value) return 'is-active';
+  if (i === prev)          return 'is-prev';
+  if (i === next)          return 'is-next';
+  return 'is-hidden';
 }
 
-onMounted(startTimer)
-onBeforeUnmount(() => { if (timer) clearInterval(timer) })
+onMounted(startTimer);
+onBeforeUnmount(() => { if (timer) clearInterval(timer); });
 </script>
 
 <style lang="scss" scoped>

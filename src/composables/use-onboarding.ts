@@ -1,11 +1,12 @@
-import { computed, reactive } from 'vue'
-import { useOnboardingValidation } from "@/composables/use-onboarding-validation";
+import { computed, reactive } from 'vue';
 
+
+import EmailStep from '@/components/steps/email-step.vue';
 import GenreStep from '@/components/steps/genre-step.vue';
 import InstrumentPage from '@/components/steps/instrument-step.vue';
-import EmailStep from '@/components/steps/email-step.vue';
 import WelcomeStep from '@/components/steps/welcome-step.vue';
-import {OnboardingState, OnboardingSteps} from "@/types/use-onboarding-type";
+import { useOnboardingValidation } from '@/composables/use-onboarding-validation';
+import { type OnboardingState, OnboardingSteps } from '@/types/use-onboarding-type';
 
 const onboardingState = reactive<OnboardingState>({
   currentStep: OnboardingSteps.INSTRUMENTAL,
@@ -13,9 +14,9 @@ const onboardingState = reactive<OnboardingState>({
   genres: [],
   email: null,
   agreedToMarketing: false,
-})
+});
 
-const { isEmailValid } = useOnboardingValidation()
+const { isEmailValid } = useOnboardingValidation();
 
 export function useOnboarding() {
   const stepTitles = computed(() => ({
@@ -38,20 +39,20 @@ export function useOnboarding() {
       title: 'welcome-step',
       component: WelcomeStep,
       isValid: () => true,
-    }
+    },
   }));
 
   const isLastStep = computed(
-    () => onboardingState.currentStep === 3
-  )
+    () => onboardingState.currentStep === 3,
+  );
 
   const isCurrentStepValid = computed((): boolean => {
     return stepTitles.value[onboardingState.currentStep].isValid();
   });
 
   const nextStep = () => {
-    onboardingState.currentStep++
-  }
+    onboardingState.currentStep++;
+  };
 
   return {
     stepTitles,
@@ -59,5 +60,5 @@ export function useOnboarding() {
     isLastStep,
     isCurrentStepValid,
     nextStep,
-  }
+  };
 }

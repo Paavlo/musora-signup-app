@@ -18,7 +18,6 @@
 
     <slot name="fields" />
   </div>
-
 </template>
 
 <script setup lang="ts">
@@ -27,5 +26,5 @@ defineProps({
   subtitle: { type: String, required: true },
   titleClass: { type: String, required: false, default: 'text-3xl' },
   subtitleClass: { type: String, required: false, default: 'text-base' },
-})
+});
 </script>

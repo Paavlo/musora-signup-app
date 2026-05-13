@@ -1,43 +1,44 @@
-import { computed, ref, watch } from 'vue'
-import { useOnboarding } from '@/composables/use-onboarding'
+import { computed, ref, watch } from 'vue';
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { useOnboarding } from '@/composables/use-onboarding';
 
-const emailError = ref('')
-const emailTouched = ref(false)
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const emailError = ref('');
+const emailTouched = ref(false);
 
 export function useOnboardingValidation() {
-  const { onboardingState } = useOnboarding()
+  const { onboardingState } = useOnboarding();
 
   const isEmailValid = computed(() => {
-    return EMAIL_REGEX.test(onboardingState.email || '')
-  })
+    return EMAIL_REGEX.test(onboardingState.email || '');
+  });
 
   const validateEmail = () => {
-    emailTouched.value = true
+    emailTouched.value = true;
 
     if (!onboardingState.email) {
-      emailError.value = 'Email is required'
+      emailError.value = 'Email is required';
     } else if (!isEmailValid.value) {
-      emailError.value = 'Please enter a valid email address'
+      emailError.value = 'Please enter a valid email address';
     } else {
-      emailError.value = ''
+      emailError.value = '';
     }
-  }
+  };
 
   watch(
     () => onboardingState.email,
     () => {
-      if (!emailTouched.value) return
+      if (!emailTouched.value) return;
 
-      validateEmail()
-    }
-  )
+      validateEmail();
+    },
+  );
 
   return {
     emailError,
     emailTouched,
     isEmailValid,
     validateEmail,
-  }
+  };
 }

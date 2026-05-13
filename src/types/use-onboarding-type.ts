@@ -11,4 +11,4 @@ export type OnboardingState = {
   genres: Array<string>,
   email: string | null,
   agreedToMarketing: boolean,
-}
+};
