@@ -10,11 +10,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   title: { type: String, required: true },
   value: { type: String, required: true },
-})
+});
 </script>
 
 <style scoped lang="scss">

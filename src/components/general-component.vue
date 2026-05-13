@@ -18,18 +18,13 @@
 
     <slot name="fields" />
   </div>
-
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   title: { type: String, required: true },
   subtitle: { type: String, required: true },
   titleClass: { type: String, required: false, default: 'text-3xl' },
   subtitleClass: { type: String, required: false, default: 'text-base' },
-})
+});
 </script>
-
-<style scoped lang="scss">
-
-</style>

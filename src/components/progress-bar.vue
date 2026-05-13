@@ -1,18 +1,18 @@
 <template>
   <div
-      class="progress-bar bg-border-primary mx-auto mt-8"
+    class="progress-bar bg-border-primary mx-auto mt-8"
   >
     <div
-        class="progress-bar__fill bg-brand-secondary"
-        :style="{
+      class="progress-bar__fill bg-brand-secondary"
+      :style="{
         width: `${normalizedValue}%`,
       }"
     />
   </div>
 </template>
 
-<script setup>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue';
 
 const props = defineProps({
   value: {
@@ -24,14 +24,14 @@ const props = defineProps({
     type: Number,
     default: 100,
   },
-})
+});
 
 const normalizedValue = computed(() => {
-  if (props.value <= 0) return 0
-  if (props.value >= props.max) return 100
+  if (props.value <= 0) return 0;
+  if (props.value >= props.max) return 100;
 
-  return (props.value / props.max) * 100
-})
+  return (props.value / props.max) * 100;
+});
 </script>
 
 <style scoped lang="scss">
